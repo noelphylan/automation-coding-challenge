@@ -13,8 +13,9 @@ This project uses the Page Object Model pattern where possible to abstract away 
 ### How do I get set up? ###
 
 * Install Java8 JDK or later
-* Install Eclipse/IntelliJ, clone this repo and build and deploy locally using maven(mvn clean test)
-* All code is build using maven which takes care of loading all dependencies, there is a maven plugin bundled with Eclipse
+* Install Eclipse/IntelliJ, clone this repo and import this project as an existing maven project.
+* Build and deploy locally using maven(mvn clean test)
+* All code is built using maven which takes care of loading all dependencies, there is a maven plugin bundled with Eclipse and Intellij
 * The Behavioural Driven Development cucumber feature file is in src\test\resources\features\Main.feature
 
 
