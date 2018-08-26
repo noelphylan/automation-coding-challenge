@@ -1,0 +1,117 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 31,
+        "name": "if 5 star filter and Sauna filter are not applied, then hotel results size should be at least 1",
+        "description": "",
+        "id": "test-booking.com-new-filter-functionality;if-5-star-filter-and-sauna-filter-are-not-applied,-then-hotel-results-size-should-be-at-least-1",
+        "after": [
+          {
+            "result": {
+              "duration": 624180149,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.tearDown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 6584890865,
+              "status": "passed"
+            },
+            "line": 32,
+            "name": "I am on Booking Home Page",
+            "match": {
+              "location": "BookingSteps.i_am_on_booking_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 264792889,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "I enter \"Limerick\" in the Destination input field",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Limerick",
+                  "offset": 9
+                }
+              ],
+              "location": "BookingSteps.when_i_enter_destination(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 263306272,
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "I click on the CheckIn icon",
+            "match": {
+              "location": "BookingSteps.i_click_on_checkin_icon()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3658910420,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "I select a check in date 3 months from today for 1 night",
+            "match": {
+              "location": "BookingSteps.i_select_a_checkin_date_3_months_from_today_for_1_night()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 6954663901,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "I click on the Search button",
+            "match": {
+              "location": "BookingSteps.i_click_on_the_search_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 26842074,
+              "status": "passed"
+            },
+            "line": 37,
+            "name": "The results page has at least 1 hotel",
+            "match": {
+              "location": "BookingSteps.the_results_page_has_at_least_these_hotels()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 30,
+            "name": "@local"
+          }
+        ]
+      }
+    ],
+    "name": "Test Booking.com new filter functionality",
+    "description": "",
+    "id": "test-booking.com-new-filter-functionality",
+    "keyword": "Feature",
+    "uri": "Main.feature"
+  }
+]
