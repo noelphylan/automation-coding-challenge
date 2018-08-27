@@ -1,5 +1,6 @@
 package ui.stepdefinitions;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -30,6 +31,7 @@ public class BookingSteps {
 	WebDriver driver;	
 	BookingMainPage bookingMainPage;
 	BookingResultsPage bookingResultsPage;
+	List<String> hotelResultsList;
 
 	public BookingSteps() {
 		this.driver = WebBrowser.getDriver();
@@ -110,13 +112,28 @@ public class BookingSteps {
 		
 		List<WebElement> dayCells = bookingMainPage.dayCellEls;
 
-		for (WebElement spanCell:dayCells) {
+		// now click on the checkin date,
+		for(int i=0;i<dayCells.size();i++) {
 			try {
+				WebElement spanCell = dayCells.get(i);
 				if (spanCell.getText().equals(new Integer(checkInDay).toString())) {
 					spanCell.click();
 					break;
 				}
 			} catch (Exception err) {
+				err.printStackTrace();
+			}
+		}
+		
+		// now click on the checkout date, 1 day later
+		for (WebElement spanCell:dayCells) {
+			try {
+				if (spanCell.getText().equals(new Integer(checkInDay+1).toString())) {
+					spanCell.click();
+					break;
+				}
+			} catch (Exception err) {
+				
 				err.printStackTrace();
 			}
 		}
@@ -131,12 +148,21 @@ public class BookingSteps {
 		bookingMainPage.searchButton.click();
 		GenericFunctions.waitForElementToBeVisible("filterbox_options", 5);
 		LOGGER.log(Level.INFO, "Search button clicked");
-		GenericFunctions.sleep(4000);
+		GenericFunctions.sleep(5000);
 	}
 	
 	@When("^I click on the 5 star filter$")
 	public void i_click_on_the_5_star_filter() throws Throwable {
 		LOGGER.log(Level.INFO, "entering 5 star filter method");
+		
+		storeOriginalHotelResults();
+		
+		//close the survey no button if it appears
+		try {
+			bookingResultsPage.surveyNoButton.click();
+		} catch (Exception err) {
+			err.printStackTrace();
+		}
 		
 		bookingResultsPage.fiveStarCheckBox.click();
 
@@ -144,15 +170,71 @@ public class BookingSteps {
 			
 	}
 	
+	private void storeOriginalHotelResults() {
+		List<WebElement> hotelSpans = bookingResultsPage.hotelResultSpans;
+		
+		hotelResultsList = new ArrayList<>();
+		for (WebElement hotelSpan:hotelSpans) {
+	
+			// store the hotel results list
+			if (!hotelSpan.getText().trim().equals("")) {
+				hotelResultsList.add(hotelSpan.getText().trim());
+			}
+		}
+	}
+	
 	@When("^I click on the Sauna filter$")
 	public void i_click_on_the_sauna_filter() throws Throwable {
 		LOGGER.log(Level.INFO, "entering sauna filter method");
-
+		
+		storeOriginalHotelResults();
+		//close the survey no button if it appears
+		try {
+			bookingResultsPage.surveyNoButton.click();
+		} catch (Exception err) {
+			err.printStackTrace();
+		}
+		
 		bookingResultsPage.saunaCheckBox.click();
 		
 		GenericFunctions.sleep(3000);
 		
 	}
+	
+	@When("^I click to remove the Applied filter$")
+	public void i_remove_the_applied_filter() throws Throwable {
+		LOGGER.log(Level.INFO, "entering remove applied filter method");		
+
+		bookingResultsPage.removeFilterCheckBox.click();
+		
+		GenericFunctions.sleep(3000);
+		
+	}
+	
+	@Then("The results page has the unfiltered hotel list")
+	public void the_results_page_has_the_unfiltered_hotel_list() throws Throwable {
+		LOGGER.log(Level.INFO, "entering results page  has the unfiltered hotel list method");
+		
+ 
+		List<WebElement> hotelSpans = bookingResultsPage.hotelResultSpans;
+		boolean hotelMatch = false;
+		
+		if (hotelResultsList != null && hotelSpans != null) {		
+				
+			// now check to see if the content is the same, start with the previous list
+			for (String hotelResult:hotelResultsList) {
+				for (WebElement hotelSpan:hotelSpans) {
+					if (hotelResult.equals(hotelSpan.getText().trim())) {
+						hotelMatch = true;
+					}
+				}
+				
+			}
+		}
+		
+		Assert.assertTrue(hotelMatch);
+	}
+	
 	
 	@Then("The results page has these hotels")
 	public void the_results_page_has_these_hotels(DataTable dataTable) throws Throwable {
@@ -171,6 +253,7 @@ public class BookingSteps {
 				LOGGER.log(Level.INFO, data.get(1).get(0)+" is found");
 				break;
 			}
+			
 		}
 		Assert.assertTrue(hotelFound);	
 		
@@ -204,5 +287,7 @@ public class BookingSteps {
 		Assert.assertTrue(hotelFound);	
 		
 	}
+	
+
 
 }
