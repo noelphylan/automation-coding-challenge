@@ -17,7 +17,7 @@ This project uses the Selenium WebDriver library and makes use of the Page Objec
 * All code is build using maven which takes care of loading all dependencies, there is a maven plugin bundled with Eclipse
 * The Behavioural Driven Development cucumber feature file is in src\test\resources\features\Main.feature
 * It contains 5 test scenarios, the tests be enabled/disabled by uncommenting/commenting the @local
-* annotation
+  annotation
 
 
 ### Who do I talk to? ###
