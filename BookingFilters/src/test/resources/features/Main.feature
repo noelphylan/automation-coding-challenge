@@ -35,5 +35,25 @@ When I enter "Limerick" in the Destination input field
  And I click on the Search button
 Then The results page has at least 1 hotel
 
- 
+@local
+Scenario: if 5 star filter is applied, then unapplied the hotel results should be unfiltered
+Given I am on Booking Home Page 
+When I enter "Limerick" in the Destination input field
+ And I click on the CheckIn icon
+ And I select a check in date 3 months from today for 1 night
+ And I click on the Search button
+ And I click on the 5 star filter
+ And I click to remove the Applied filter 
+Then The results page has the unfiltered hotel list
+
+@local
+Scenario: if Sauna filter is applied, then unapplied the hotel results should be unfiltered
+Given I am on Booking Home Page 
+When I enter "Limerick" in the Destination input field
+ And I click on the CheckIn icon
+ And I select a check in date 3 months from today for 1 night
+ And I click on the Search button
+ And I click on the Sauna filter
+ And I click to remove the Applied filter 
+Then The results page has the unfiltered hotel list 
  
