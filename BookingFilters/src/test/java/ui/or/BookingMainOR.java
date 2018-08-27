@@ -13,13 +13,13 @@ import org.openqa.selenium.*;
 
 public class BookingMainOR extends WebBrowser {
 
-	@FindBy(id="ss")
+	@FindBy(id=BookingConstants.DESTINATION_INPUT_ID)
 	public WebElement destinationInputField;
 	
-	@FindBy(xpath=".//button[@data-sb-id='main']")
+	@FindBy(xpath=BookingConstants.XPATH_SEARCH_BUTTON)
 	public WebElement searchButton;
 	
-	@FindBy(xpath=".//*[@id='frm']/div[1]/div[2]/div/div[2]/div/div/div/div[1]/div/button")
+	@FindBy(xpath=BookingConstants.XPATH_CHECK_IN_DAY_MONTH_BUTTON)
 	public WebElement checkInDayMonthButton;
 
 	@FindBy(xpath=BookingConstants.XPATH_CAL_NAV_RIGHT)
@@ -27,11 +27,5 @@ public class BookingMainOR extends WebBrowser {
 
 	@FindBy(xpath=BookingConstants.XPATH_CAL_DAY)
 	public List<WebElement> dayCellEls;
-
-	@FindBy(xpath=".//*[@id='frm']/div[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div[3]/div/div/div[4]/table/tbody/tr[4]/td[6]/span")
-	public WebElement checkInDayCell;
-
-	@FindBy(xpath=".//*[@id='frm']/div[1]/div[2]/div/div[3]/div/div/div/div[2]/div[2]/div[3]/div/div/div[4]/table/tbody/tr[4]/td[7]/span")
-	public WebElement checkoutDayCell;
 	
 }   

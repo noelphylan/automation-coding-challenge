@@ -20,4 +20,10 @@ public class BookingResultsOR extends WebBrowser {
     @FindBy(xpath=BookingConstants.XPATH_HOTEL_FILTER_SPANS)
     public List<WebElement> hotelResultSpans;
 
+	@FindBy(xpath=BookingConstants.XPATH_REMOVE_FILTER_LINK)
+    public WebElement removeFilterCheckBox;
+	
+	@FindBy(xpath=BookingConstants.XPATH_SURVEY_NO_BUTTON)
+    public WebElement surveyNoButton;
+
 }
