@@ -2,6 +2,7 @@
 
 This repo contains all of the Java source code, configuration and build instructions for the Automation coding challenge Booking Filter project. 
 This project uses the Selenium WebDriver library and makes use of the Page Object Model design pattern where possible to abstract away the Xpath locator strategy used to find the page elements
+Google Chrome is the default browser
 
 ### What is this repository for? ###
 
