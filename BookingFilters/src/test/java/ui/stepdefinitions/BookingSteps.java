@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import cucumber.api.DataTable;
@@ -64,8 +67,8 @@ public class BookingSteps {
 
 	}
 	
-	@When("^I select a check in date 3 months from today for 1 night$")
-	public void i_select_a_checkin_date_3_months_from_today_for_1_night() throws Throwable {
+	@When("^I select a check in date 3 months from today for default 3 nights$")
+	public void i_select_a_checkin_date_3_months_from_today_for_default_3_nights() throws Throwable {
 		
 		Calendar cal = Calendar.getInstance(); 
 		cal.add(Calendar.MONTH, 3);
@@ -86,7 +89,7 @@ public class BookingSteps {
 		int checkInMonth = bookingCal.get(Calendar.MONTH)+1;
 		
 		Calendar currentCal = new GregorianCalendar();
-		int currentMonth = currentCal.get(Calendar.MONTH)+1;;
+		int currentMonth = currentCal.get(Calendar.MONTH)+1;
 
 		int monthsToAdvance = checkInMonth-currentMonth;
 		// if this is a negative number then it is in the next calendar year
@@ -108,10 +111,11 @@ public class BookingSteps {
 			
 		}
 		
-		int checkInDay = bookingCal.get(Calendar.DATE);
-		
 		List<WebElement> dayCells = bookingMainPage.dayCellEls;
 
+		int checkInDay = bookingCal.get(Calendar.DATE);
+		int checkInYear = bookingCal.get(Calendar.YEAR);
+		
 		// now click on the checkin date,
 		for(int i=0;i<dayCells.size();i++) {
 			try {
@@ -123,22 +127,8 @@ public class BookingSteps {
 			} catch (Exception err) {
 				err.printStackTrace();
 			}
-		}
-		
-		// now click on the checkout date, 1 day later
-		for (WebElement spanCell:dayCells) {
-			try {
-				if (spanCell.getText().equals(new Integer(checkInDay+1).toString())) {
-					spanCell.click();
-					break;
-				}
-			} catch (Exception err) {
-				
-				err.printStackTrace();
-			}
-		}
-		
-		
+		}		
+
 		LOGGER.log(Level.INFO, "calendar date clicked");
 
 	}
@@ -146,7 +136,7 @@ public class BookingSteps {
 	@When("^I click on the Search button$")
 	public void i_click_on_the_search_button() throws Throwable {
 		bookingMainPage.searchButton.click();
-		GenericFunctions.waitForElementToBeVisible("filterbox_options", 5);
+		//GenericFunctions.waitForElementToBeVisible("filterbox_options", 5);
 		LOGGER.log(Level.INFO, "Search button clicked");
 		GenericFunctions.sleep(5000);
 	}
@@ -160,6 +150,7 @@ public class BookingSteps {
 		//close the survey no button if it appears
 		try {
 			bookingResultsPage.surveyNoButton.click();
+			GenericFunctions.sleep(3000);
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
@@ -191,6 +182,7 @@ public class BookingSteps {
 		//close the survey no button if it appears
 		try {
 			bookingResultsPage.surveyNoButton.click();
+			GenericFunctions.sleep(3000);
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
