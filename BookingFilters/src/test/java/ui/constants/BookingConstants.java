@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class BookingConstants {
 
+	private BookingConstants() {		
+	}
+	
 	public static final String BOOKING_TITLE = "Booking.com";
 	public static final String JANUARY = "January";
 	public static final String FEBRUARY = "February";

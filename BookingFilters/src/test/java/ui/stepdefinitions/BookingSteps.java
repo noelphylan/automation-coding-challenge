@@ -79,7 +79,7 @@ public class BookingSteps {
 
 	}	
 	
-	public void selectCalendarDate(Date bookingDate) throws Throwable {
+	private void selectCalendarDate(Date bookingDate) throws Throwable {
 		
 		// the navRight chevron will advance each month, so determine check in month
 		// add 1 to the get a non zero index month
