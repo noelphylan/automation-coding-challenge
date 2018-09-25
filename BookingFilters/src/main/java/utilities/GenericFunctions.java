@@ -22,28 +22,27 @@ import org.testng.Assert;
 
 
 public class GenericFunctions extends WebBrowser {
+	
+	private final static Logger LOGGER = 
+			 Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	 
 	public static void verifyPageTitle(String expectedTitle) {
 		Assert.assertEquals(driver.getTitle(), expectedTitle);
 	}
 
 	public static void verifyPageTitleContains(String expectedTitle) {
 		CharSequence cs = expectedTitle;
-		if (driver.getTitle().contains(cs)) {
-			Assert.assertTrue(true);
-		} else {
-			Assert.assertFalse(true);
-		}
+		Assert.assertTrue(driver.getTitle().contains(cs));
 	}
 	
-	public static boolean isElementDisplayed(By locator) {
+	public static boolean isElementDisplayed(By locator) {		
+		boolean isVisible = false;
 		try {
-			if (driver.findElement(locator).isDisplayed()) {
-				return true;
-			}
+			isVisible = driver.findElement(locator).isDisplayed();
 		} catch (Exception e) {
-			return false;
+			
 		}
-		return false;
+		return isVisible;
 	}
 
 	
@@ -85,8 +84,8 @@ public class GenericFunctions extends WebBrowser {
 	}
 
 	
-	public static WebElement getOptions(String ID, int i) {
-		WebElement selectElement = driver.findElement(By.id(ID));
+	public static WebElement getOptions(String id, int i) {
+		WebElement selectElement = driver.findElement(By.id(id));
 		Select select = new Select(selectElement);	
 		List<WebElement> allOptions = select.getOptions(); 			
 			
@@ -181,9 +180,6 @@ public class GenericFunctions extends WebBrowser {
 			}
 			
 		}
-	 
-	 private final static Logger LOGGER = 
-			 Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 		
 
 }

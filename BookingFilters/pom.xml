@@ -24,13 +24,7 @@
 		    <artifactId>selenium-ie-driver</artifactId>
 		    <version>3.8.1</version>
 		</dependency>
-
-		<!-- <dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc14</artifactId>
-		    <version>10.2.0.4.0</version>
-		</dependency> -->
-		
+				
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
@@ -154,10 +148,6 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.7.0</version>
 				<configuration>
-					<!-- <forkCount>0</forkCount>
-   					<suiteXmlFiles>
-         			<suiteXmlFile>testng.xml</suiteXmlFile>
-   					</suiteXmlFiles> -->
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
