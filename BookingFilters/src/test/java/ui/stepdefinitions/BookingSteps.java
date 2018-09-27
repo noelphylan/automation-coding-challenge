@@ -1,5 +1,6 @@
 package ui.stepdefinitions;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -87,7 +88,6 @@ public class BookingSteps {
 		bookingCal.setTime(bookingDate);		
 		
 		int checkInMonth = bookingCal.get(Calendar.MONTH)+1;
-		
 		Calendar currentCal = new GregorianCalendar();
 		int currentMonth = currentCal.get(Calendar.MONTH)+1;
 
